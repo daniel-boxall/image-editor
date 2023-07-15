@@ -60,7 +60,7 @@ filterOptions.forEach(option => {
         } else if (option.id === "opacity") {
             filterSlider.max === "100";
             filterSlider.value = opacity;
-            filterSlider.innerText = `${opacity}%`;
+            filterSlider.innerText = `${opacity}%`
         }
         else {
             filterSlider.max = "100";
