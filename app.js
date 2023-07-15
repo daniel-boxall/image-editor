@@ -10,12 +10,12 @@ const fileInput = document.querySelector(".file-input"),
     saveImgBtn = document.querySelector(".save-image");
 
 
-let brightness = 100, saturation = 100, inversion = 0, grayscale = 0; blur = 0;
+let brightness = 100, saturation = 100, inversion = 0, grayscale = 0; blur = 0, sepia = 0, contrast = 100, opacity = 100;
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
 
 const applyFilters = () => {
     previewImage.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
-    previewImage.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) blur(${blur}px)`;
+    previewImage.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) blur(${blur}px) sepia(${sepia}%) contrast(${contrast}%) opacity(${opacity}%)`;
 }
 
 const loadImage = () => {
@@ -49,6 +49,18 @@ filterOptions.forEach(option => {
             filterSlider.max = "10";
             filterSlider.value = blur;
             filterSlider.innerText = `${blur}px`;
+        } else if (option.id === "sepia") {
+            filterSlider.max === "100";
+            filterSlider.value = sepia;
+            filterSlider.innerText = `${sepia}%`
+        } else if (option.id === "contrast") {
+            filterSlider.max === "200";
+            filterSlider.value = contrast;
+            filterSlider.innerText = `${contrast}%`
+        } else if (option.id === "opacity") {
+            filterSlider.max === "100";
+            filterSlider.value = opacity;
+            filterSlider.innerText = `${opacity}%`
         }
         else {
             filterSlider.max = "100";
@@ -70,6 +82,12 @@ const updateFilter = () => {
         inversion = filterSlider.value;
     } else if (selectedFilter.id === "grayscale") {
         grayscale = filterSlider.value;
+    } else if (selectedFilter.id === "sepia") {
+        sepia = filterSlider.value;
+    } else if (selectedFilter.id === "contrast") {
+        contrast = filterSlider.value;
+    } else if (selectedFilter.id === "opacity") {
+        opacity = filterSlider.value;
     } else {
         blur = filterSlider.value;
     }
@@ -89,7 +107,19 @@ rotateOptions.forEach(option => {
         }
         applyFilters();
     })
-})
+})   
+
+fileInput.addEventListener("change", function() {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    previewImage.src = event.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
 
 const resetFilter = () => {
     // resetting all variable values to its default value
@@ -98,6 +128,7 @@ const resetFilter = () => {
     filterOptions[0].click();
     applyFilters();
 }
+
 
 const saveImage = () => {
     const canvas = document.createElement("canvas"); // creating canvas element
