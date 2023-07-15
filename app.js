@@ -9,12 +9,13 @@ const fileInput = document.querySelector(".file-input"),
     resetFilterBtn = document.querySelector(".reset-filter"),
     saveImgBtn = document.querySelector(".save-image");
 
-let brightness = 100, saturation = 100, inversion = 0, grayscale = 0;
+
+let brightness = 100, saturation = 100, inversion = 0, grayscale = 0; blur = 0;
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
 
 const applyFilters = () => {
     previewImage.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
-    previewImage.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
+    previewImage.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) blur(${blur}px)`;
 }
 
 const loadImage = () => {
@@ -44,7 +45,12 @@ filterOptions.forEach(option => {
             filterSlider.max = "100";
             filterSlider.value = inversion;
             filterSlider.innerText = `${inversion}%`;
-        } else {
+        } else if (option.id === "blur") {
+            filterSlider.max = "10";
+            filterSlider.value = blur;
+            filterSlider.innerText = `${blur}px`;
+        }
+        else {
             filterSlider.max = "100";
             filterSlider.value = grayscale;
             filterSlider.innerText = `${grayscale}%`;
@@ -62,8 +68,10 @@ const updateFilter = () => {
         saturation = filterSlider.value;
     } else if (selectedFilter.id === "inversion") {
         inversion = filterSlider.value;
-    } else {
+    } else if (selectedFilter.id === "grayscale") {
         grayscale = filterSlider.value;
+    } else {
+        blur = filterSlider.value;
     }
     applyFilters();
 }
