@@ -52,15 +52,15 @@ filterOptions.forEach(option => {
         } else if (option.id === "sepia") {
             filterSlider.max === "100";
             filterSlider.value = sepia;
-            filterSlider.innerText = `${sepia}%`
+            filterSlider.innerText = `${sepia}%`;
         } else if (option.id === "contrast") {
             filterSlider.max === "200";
             filterSlider.value = contrast;
-            filterSlider.innerText = `${contrast}%`
+            filterSlider.innerText = `${contrast}%`;
         } else if (option.id === "opacity") {
             filterSlider.max === "100";
             filterSlider.value = opacity;
-            filterSlider.innerText = `${opacity}%`
+            filterSlider.innerText = `${opacity}%`;
         }
         else {
             filterSlider.max = "100";
@@ -123,10 +123,11 @@ fileInput.addEventListener("change", function() {
 
 const resetFilter = () => {
     // resetting all variable values to its default value
-    brightness = 100; saturation = 100; inversion = 0; grayscale = 0;
+    brightness = 100; saturation = 100; inversion = 0; grayscale = 0; blur = 0; sepia = 0; contrast = 100; opacity = 100;
     rotate = 0; flipHorizontal = 1; flipVertical = 1;
     filterOptions[0].click();
     applyFilters();
+    updateFilter();
 }
 
 
