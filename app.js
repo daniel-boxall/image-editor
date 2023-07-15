@@ -10,7 +10,7 @@ const fileInput = document.querySelector(".file-input"),
     saveImgBtn = document.querySelector(".save-image");
 
 
-let brightness = 100, saturation = 100, inversion = 0, grayscale = 0; blur = 0, sepia = 0, contrast = 100, opacity = 100;
+let brightness = 100, saturation = 100, inversion = 0, grayscale = 0, blur = 0, sepia = 0, contrast = 100, opacity = 100;
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
 
 const applyFilters = () => {
@@ -78,6 +78,8 @@ const updateFilter = () => {
         brightness = filterSlider.value;
     } else if (selectedFilter.id === "saturation") {
         saturation = filterSlider.value;
+    } else if (selectedFilter.id === "blur") {
+        blur = filterSlider.value;
     } else if (selectedFilter.id === "inversion") {
         inversion = filterSlider.value;
     } else if (selectedFilter.id === "grayscale") {
