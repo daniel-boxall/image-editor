@@ -50,24 +50,25 @@ filterOptions.forEach(option => {
             filterSlider.value = blur;
             filterSlider.innerText = `${blur}px`;
         } else if (option.id === "sepia") {
-            filterSlider.max === "100";
+            filterSlider.max = "100";
             filterSlider.value = sepia;
             filterSlider.innerText = `${sepia}%`;
         } else if (option.id === "contrast") {
-            filterSlider.max === "200";
+            filterSlider.max = "200";
             filterSlider.value = contrast;
             filterSlider.innerText = `${contrast}%`;
         } else if (option.id === "opacity") {
-            filterSlider.max === "100";
+            filterSlider.max = "100";
             filterSlider.value = opacity;
-            filterSlider.innerText = `${opacity}%`
+            filterSlider.innerText = `${opacity}%`;
         }
         else {
             filterSlider.max = "100";
             filterSlider.value = grayscale;
             filterSlider.innerText = `${grayscale}%`;
         }
-    });
+        updateFilter();
+    });   
 });
 
 const updateFilter = () => {
@@ -88,11 +89,9 @@ const updateFilter = () => {
         sepia = filterSlider.value;
     } else if (selectedFilter.id === "contrast") {
         contrast = filterSlider.value;
-    } else if (selectedFilter.id === "opacity") {
-        opacity = filterSlider.value;
     } else {
-        blur = filterSlider.value;
-    }
+        opacity = filterSlider.value;
+    } 
     applyFilters();
 }
 
