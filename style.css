@@ -155,6 +155,7 @@ body {
     background: #5372f0;
     border: 1px solid #6c757d;
 }
+
 @media screen and (max-width: 760px) {
     .container {
         padding: 25px;
